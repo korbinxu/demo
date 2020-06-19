@@ -1,0 +1,117 @@
+html,
+body {
+	padding: 0;
+	margin: 0;
+	width: 100vw;
+	height: 100vh;
+	font-family: Arial, Helvetica, sans-serif;
+	background: url(./background.jpg) no-repeat;
+	background-size: cover;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 5vw;
+	height: 80px;
+	background-color: rgba(65, 81, 101, 0.9);
+}
+
+.logo {
+	color: #dadbdd;
+	flex: 1;
+}
+
+.nav-menu {
+	display: flex;
+	flex: 1;
+	justify-content: space-between;
+	max-width: 550px;
+}
+
+.nav-menu li {
+	list-style: none;
+	color: #dadbdd;
+	font-weight: 600;
+}
+
+.burger {
+	display: none;
+}
+
+.burger div {
+	/* 设置汉堡按钮三层条 */
+	width: 25px;
+	height: 3px;
+	background-color: #dadbdd;
+	margin: 4px;
+}
+
+@media screen and (max-width:768px) {
+	.nav-menu {
+		position: absolute;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		top: 80px;
+		right: 0;
+		bottom: 0;
+		width: 50vw;
+		margin: 0;
+		height: calc(100vh - 80px);
+		background-color: rgba(65, 81, 101, 0.9);
+
+		transform: translateX(100%);
+	}
+
+	/* 单机汉堡按钮 控制菜单的出现 */
+	.nav-menu.open {
+		transform: translateX(0);
+	}
+
+	.nav-menu li {
+		margin: 3vh;
+		transform: translateX(20px);
+		opacity: 0;
+	}
+
+	/* 汉堡按钮 */
+	.burger {
+		display: block;
+	}
+
+	.burger.active div {
+		transition: 0.3s ease-in-out 0.3s;
+	}
+
+	/* 第一条线旋转45度 */
+	.burger.active .top-line {
+		transform: rotate(45deg) translate(4px, 6px);
+	}
+
+	/* 中间线向右移动并变为透明 */
+	.burger.active .middle-line {
+		opacity: 0;
+		transform: translateX(10px);
+		transition: 0.3s ease-in-out;
+	}
+
+	/* 第三条线旋转-45度 */
+	.burger.active .bottom-line {
+		transform: rotate(-45deg) translate(4px, -6px);
+	}
+
+	/* 菜单滑出动画 */
+	@keyframes slideIn {
+		from {
+			transform: translateX(20px);
+			opacity: 0;
+		}
+
+		to {
+			transform: translateX(0);
+			opacity: 1;
+		}
+	}
+}
